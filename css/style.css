@@ -1,0 +1,51 @@
+#flight {
+    background: linear-gradient(rgba(0,0,0,.1),rgba(0,0,0,.1)), url("../images/andrew-ruiz-fmz-B9At9iQ-unsplash.jpg");
+    background-size: cover;
+}
+.bg-main-content{
+    background-color: rgba(255,255,255,.9);
+}
+#searchBtn{
+    color: #000;
+    background-color: #75e6da;
+    border-color: #75e6da;
+}
+#refreshBtn{
+    background-color: #e2c9af;
+    border-color: #e2c9af;;
+}
+#form,
+#output {
+    width: 65%;
+}
+#map {
+    width: 1000px;
+    height: 500px;
+}
+footer {
+    background-color: #f8f9fa;
+    width: 100%;
+}
+@media all and (max-width: 768px) {
+    #map {
+        width: 700px;
+        height: 400px;
+    }
+    #refreshBtn {
+        margin-top: 10px;
+    }
+}
+
+@media all and (max-width: 426px) {
+    #map {
+        width: 370px;
+        height: 250px;
+    }
+}
+
+@media all and (max-width: 321px) {
+    #map {
+        width: 300px;
+        height: 250px;
+    }
+}
