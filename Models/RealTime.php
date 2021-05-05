@@ -7,7 +7,7 @@ class RealTime
     public function realTimeFlight($flightNum)
     {
         $queryString = http_build_query([
-            'access_key' => '0470dbade963e929fc9f6ef9a4508af4',
+            'access_key' => '',
             'flight_iata' => $flightNum
         ]);
 

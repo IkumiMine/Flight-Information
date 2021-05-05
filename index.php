@@ -103,7 +103,7 @@ if(isset($_GET['search'])){
         <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
         <!--Google Maps API-->
         <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4mDJjlh-XfAMfhSrqTvn3V-EwJAdZLxg"></script>
+                src="https://maps.googleapis.com/maps/api/js?key="></script>
         <!--custom js-->
         <script async defer src="js/googlemap.js"></script>
     </body>
