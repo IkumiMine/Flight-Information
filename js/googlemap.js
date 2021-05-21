@@ -1,5 +1,5 @@
 function initializeMap() {
-    let map, marker, flight;
+    let map;
     const mapOptions = {
         zoom: 1,
         center: { lat: 0, lng: 0 },
@@ -87,14 +87,16 @@ function initializeMap() {
     }
     map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    //I tried to check if session is exist or not.
-    //var session = document.getElementById('session');
-    //if(session !== "" ){
-        window.addEventListener('load',searchFlight);
-    //}
+    let flightInput = document.getElementById('flightNum').value;
+
+    //If flight number input is filled, run the searchFlight function;
+    if(flightInput){
+        addMarker();
+    }
 
     //function to get lat and lng of the selected flight
-    function searchFlight() {
+    function addMarker() {
+        let flight, marker;
         //console.log("getting data of flight");
         var ajax;
         try {
@@ -111,19 +113,23 @@ function initializeMap() {
                 }
             }
         }
-        ajax.open("GET", "locationcode.php", true);
+        ajax.open("GET", "components/locationcode.php", true);
         ajax.send();
         ajax.onreadystatechange = function () {
             if (ajax.readyState == 4 && ajax.status == 200) {
-                var latlng = JSON.parse(ajax.responseText);
-                flight = new google.maps.LatLng(latlng.lat, latlng.lng);
 
-                //Marker
-                marker = new google.maps.Marker({
-                    position: flight,
-                    map: map,
-                    icon: 'images/location-pin-mid.png'
-                });
+                //If ajax responsetext is not null and empty, set a marker
+                if(ajax.responseText !== null && ajax.responseText !== ""){
+                    var latlng = JSON.parse(ajax.responseText);
+                    flight = new google.maps.LatLng(latlng.lat, latlng.lng);
+
+                    //Marker
+                    marker = new google.maps.Marker({
+                        position: flight,
+                        map: map,
+                        icon: 'images/location-pin-mid.png'
+                    });
+                }
             }
         }
     }

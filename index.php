@@ -10,21 +10,24 @@ function dateFormat($time){
     return $formatted_time;
 }
 
-//when the search button is clicked,  run validation, search flight, set session
+//when the search button is clicked, run validation, search flight, set session
 if(isset($_GET['search'])){
+    $pattern = '/^[A-Za-z]{2}\d+/';
     if($_GET['flightNum'] == ""){
-        $error = "Please enter your flight number";
+        $error = "Please enter your flight number.";
+    } else if (!preg_match($pattern, $_GET['flightNum'])) {
+        $error = "Please enter valid flight number(e.g. AC7605).";
     } else {
         $newRealTIme = new RealTime();
         $selectedFlight = $newRealTIme->realTimeFlight($_GET['flightNum']);
-        if($selectedFlight == null){
-            $error = "Sorry, the flight you are looking for is currently unavailable";
+        if(empty($selectedFlight['data'])){
+            $error = "Sorry, the flight you are looking for is currently unavailable.";
         } else {
             $_SESSION['flight'] = $selectedFlight;
             if (isset($selectedFlight['data'][0]['live']['latitude']) && isset($selectedFlight['data'][0]['live']['longitude'])) {
-                $error = "You can check real time flight location on map.";
+                $map = "You can check real time flight location on the map.";
             } else {
-                $error = "Sorry, the flight location is unavailable.";
+                $map = "Sorry, the flight location is unavailable.";
             }
         }
     }
@@ -45,20 +48,19 @@ if(isset($_GET['search'])){
     </head>
     <body>
         <!--Header-->
-        <?php include_once 'header.php' ?>
+        <?php include_once 'components/header.php' ?>
 
         <main>
             <div class="d-flex flex-column align-items-center py-5 h-100" id="flight">
                 <h1 class="d-none">Find Flight</h1>
-                <input type="hidden" id="session-flight" class="d-none" id="session" value="<?= isset($_SESSION['flight']) ? $_SESSION['flight'] : ""; ?>">
 
                 <!--Search form-->
-                <?php include_once 'search-form.php' ?>
+                <?php include_once 'components/search-form.php' ?>
 
                 <!--Info output-->
                 <div class="card p-3 shadow-sm bg-main-content" id="output">
-                    <?php if(!isset($selectedFlight)) {
-                            include_once 'output-template.php';
+                    <?php if(empty($selectedFlight['data'])) {
+                            include_once 'components/output-template.php';
                         } else {
                             $newOutput = new Output();
                             $output = $newOutput->content(
@@ -89,21 +91,21 @@ if(isset($_GET['search'])){
 
             <!--Google Maps-->
             <section class="container-fluid">
-                    <div class="mx-auto my-4" id="map"></div>
+                <h2 class="text-center mt-3 fw-lighter">Real time flight location will be displayed on the map</h2>
+                <div class="mx-auto my-4" id="map"></div>
             </section>
             <!--End of Google Maps-->
         </main>
 
         <!-- Footer -->
-        <?php include_once 'footer.php'; ?>
+        <?php include_once 'components/footer.php'; ?>
 
         <!--jQuery-->
         <script src="js/jquery-3.5.1.min.js"></script>
         <!--bootstrap js-->
         <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
         <!--Google Maps API-->
-        <script async defer
-                src="https://maps.googleapis.com/maps/api/js?key="></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4mDJjlh-XfAMfhSrqTvn3V-EwJAdZLxg"></script>
         <!--custom js-->
         <script async defer src="js/googlemap.js"></script>
     </body>
