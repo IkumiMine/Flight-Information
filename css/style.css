@@ -18,7 +18,7 @@
 #output {
     width: 65%;
 }
-#error-msg {
+#error-msg, #map-msg {
     color: orangered;
 }
 #map {
@@ -37,11 +37,20 @@ footer {
     #refreshBtn {
         margin-top: 10px;
     }
+    #airline-name {
+        margin: 0;
+    }
+    #departure {
+        border-bottom: 3px solid #dee2e6;
+    }
+    #arrival {
+        margin-top: 10px;
+    }
 }
 
 @media all and (max-width: 426px) {
     #map {
-        width: 370px;
+        width: 352px;
         height: 250px;
     }
 }

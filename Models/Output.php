@@ -4,17 +4,17 @@ namespace APIproject\Models;
 class Output {
 
     public function content($flightIata, $airlineName, $airlineIata, $depIata, $arrIata, $depAirport, $depSch, $depEst, $depAct, $depTer, $depGate, $depTimezone, $arrAirport, $arrSch, $arrEst, $arrAct, $arrTer, $arrGate, $arrTimezone) {
-        $content = "<div class='d-flex card-title border-bottom border-3'>
-    <div>
+        $content = "<div class='d-lg-flex card-title border-bottom border-3'>
+    <div class='text-center'>
         <h2>$flightIata</h2>
-        <p>$airlineName ($airlineIata)</p>
+        <p id='airline-name'>$airlineName ($airlineIata)</p>
     </div>
     <div class='flex-grow-1 text-center'>
         <p class='fs-2 pt-2 m-0'>$depIata <i class='fas fa-chevron-right fa-fw'></i> $arrIata</p>
     </div>
 </div>
 <div class='row'>
-    <div class='col-lg-6 text-center'>
+    <div class='col-lg-6 text-center' id='departure'>
         <h3 class='fs-5'><i class='fas fa-plane-departure fa-fw'></i> Departure</h3>
         <p class='fs-4'>$depAirport</p>
         <p>Scheduled: $depSch</p>
@@ -26,7 +26,7 @@ class Output {
         </div>
         <p>Timezone: $depTimezone</p>
     </div>
-    <div class='col-lg-6 text-center'>
+    <div class='col-lg-6 text-center' id='arrival'>
         <h3 class='fs-5'><i class='fas fa-plane-arrival fa-fw'></i> Arrival</h3>
         <p class='fs-4'>$arrAirport</p>
         <p>Scheduled: $arrSch</p>

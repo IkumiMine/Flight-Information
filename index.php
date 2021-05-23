@@ -27,7 +27,7 @@ if(isset($_GET['search'])){
             if (isset($selectedFlight['data'][0]['live']['latitude']) && isset($selectedFlight['data'][0]['live']['longitude'])) {
                 $map = "You can check real time flight location on the map.";
             } else {
-                $map = "Sorry, the flight location is unavailable.";
+                $map = "<i class='far fa-dizzy fa-fw'></i>Sorry, the flight location is unavailable.";
             }
         }
     }
