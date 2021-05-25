@@ -13,7 +13,7 @@ One of the challenges was that adding a marker to the map with the data from ano
 At first, I made another function to add a marker and set it to run when the page was loaded. It worked somehow, but there were still bugs and error messages, such as not showing the Google Map on the first page load. However, with the professor's help, I was able to fix the problem. I left the user input in the form and set the add marker function to run when the user input value is set. The application works fine without any error message now.
 
 ## Future updates
-Currently, searching by the flight date is not working yet, so I would like to add that function. Also, I would like to refresh the flight location marker every second so a user will be able to follow 'the real-time location'. I would like to develop my skills to be able to add those features by learning from other developers.
+Currently, searching by the flight date is not working yet, so I would like to add that function. Also, I would like to refresh the flight location marker every second so a user will be able to follow 'the real-time location'.
 
 
 
